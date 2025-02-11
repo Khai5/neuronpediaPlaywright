@@ -1,0 +1,62 @@
+import { test, expect } from '@playwright/test';
+
+test('homepage has expected title', async ({ page }) => {
+  await page.goto('https://neuronpedia.org');
+  await expect(page).toHaveTitle(/Neuronpedia/);
+});
+
+/*test('searcher is embedded in the page', async ({ page }) => {
+  await page.goto('https://neuronpedia.org');
+   await expect(page).toHave('placeholder', 'Search Neuronpedia');
+})
+*/
+
+test('API', async({ page }) => {
+  await page.goto('https://neuronpedia.org');
+  await expect(page).toHaveURL(/.*neuronpedia\.org\/api-doc/);
+})
+
+test('SAE Evals', async({ page }) => {
+  await page.goto('https://neuronpedia.org');
+  await expect(page).toHaveURL(/.*neuronpedia\.org\/sae-bench/);
+})
+
+test('Steer', async({ page }) => {
+  await page.goto('https://neuronpedia.org');
+  await expect(page).toHaveURL(/.*neuronpedia\.org\/steer/);
+})
+
+test('Slack', async({ page }) => {
+  await page.goto('https://neuronpedia.org');
+  await expect(page).toHaveURL(/.*slack\.com*/);
+})
+
+test('Donate', async({ page }) => {
+  await page.goto('https://neuronpedia.org');
+  await expect(page).toHaveURL(/.*every\.org*/);
+})
+
+test('Feedback', async({ page }) => {
+  await page.goto('https://neuronpedia.org');
+  await expect(page).toHaveURL(/mailto:johnny@neuronpedia\.org*/);
+})
+
+test('Upskill', async({ page }) => {
+  await page.goto('https://neuronpedia.org');
+  await expect(page).toHaveURL(/.*arena\.education/);
+})
+
+test('all services are online', async ({ page }) => {
+  await page.goto('https://neuronpedia.org');
+  await expect(page).toHaveURL(/.*status\.neuronpedia\.org/);
+})
+
+/* test('My lists', async({ page }) => {
+  await page.goto('https://neuronpedia.org');
+  await expect(page).toHaveURL(/.*neuronpedia\.org\/user\/.*\/lists/);
+}) */
+
+/* test('My vectors', async({ page }) => {
+  await page.goto('https://neuronpedia.org');
+  await expect(page).toHaveURL(/.*neuronpedia\.org\/user\/.*\/vectors/);
+}) */
