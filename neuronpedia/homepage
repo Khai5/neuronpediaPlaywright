@@ -82,14 +82,14 @@ test('Upload SAEs', async({ page }) => {
 
 /*test('searcher is embedded in the page', async ({ page }) => {
   await page.goto('https://neuronpedia.org');
-   await expect(page).toHave('placeholder', 'Enter any text or sentence to search*/');
-  })
-  */
+  await expect(page).toHave('placeholder', 'Enter any text or sentence to search');
+})
+*/
   
-  /*test('searcher example', async ({ page }) => {
-    await page.goto('https://neuronpedia.org');
-     await expect(page).toHave('placeholder', 'Test activation with custom text\./');
-  })
+/*test('searcher example', async ({ page }) => {
+  await page.goto('https://neuronpedia.org');
+  await expect(page).toHave('placeholder', 'Test activation with custom text\./');
+})
   */
   
 test('Docs: Lists', async({ page }) => {
