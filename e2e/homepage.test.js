@@ -30,7 +30,7 @@ test('SAE Evals link', async({ page }) => {
   // Wait for navigation and check exact URL
   await page.waitForLoadState('networkidle');
   await expect(page).toHaveURL(/.*neuronpedia\.org\/sae-bench/);
-})
+});
 
 test('Steer', async({ page }) => {
   await page.goto('https://neuronpedia.org');
@@ -41,7 +41,7 @@ test('Steer', async({ page }) => {
   await steerLink.click();
 
   await expect(page).toHaveURL(/https:\/\/www\.neuronpedia\.org\/.*\/steer/);
-})
+});
 
 // Must be logged in to test this
 // test('My lists', async({ page }) => {
@@ -64,72 +64,105 @@ test('Steer', async({ page }) => {
 test('Getting Started', async({ page }) => {
   await page.goto('https://neuronpedia.org');
 
-  // Find and click the Getting Started link
-  const gettingStartedLink = page.getByRole('link', { name: 'Getting Started', exact: true });
-  await gettingStartedLink.waitFor({ state: 'visible' });
-  await gettingStartedLink.click();
+  const [newPage] = await Promise.all([
+    page.waitForEvent('popup'),
+    page.getByRole('link', { name: 'Getting Started', exact: true }).click()
+  ]);
 
-  await expect(page).toHaveURL('https://docs.neuronpedia.org/');
-})
+  await expect(newPage).toHaveURL('https://docs.neuronpedia.org/');
+});
 
-// test('MIT Technology Review image link', async ({ page }) => {
-//   await page.goto('https://neuronpedia.org');
+test('MIT Technology Review link', async ({ page }) => {
+  await page.goto('https://neuronpedia.org');
   
-//   // Find the link by the image's alt text
-//   const imageLink = page.getByRole('img', { 
-//     alt: 'MIT Technology Review' 
-//   });
+  const [newPage] = await Promise.all([
+    page.waitForEvent('popup'),
+    page.locator('a[target="_blank"][href*="technologyreview\.com"]').click()
+  ]);
+
+  await expect(newPage).toHaveURL(/.*technologyreview\.com/);
+});
+
+test('Google Deepmind', async ({ page }) => {
+  await page.goto('https://neuronpedia.org');
   
-//   // Wait for it to be visible
-//   await imageLink.waitFor({ state: 'visible' });
+  const [newPage] = await Promise.all([
+    page.waitForEvent('popup'),
+    page.locator('a[target="_blank"][href*="gemma-scope"]').click()
+  ]);
   
-//   // Click the link
-//   await imageLink.click();
-  
-//   // Check the navigation
-//   await page.waitForLoadState('networkidle');
-//   await expect(page).toHaveURL(/.*technologyreview\.com/);
-// });
+  await expect(newPage).toHaveURL(/.*gemma-scope/);
+});
 
-// test('Google Deepmind', async({ page }) => {
-//   await page.goto('https://neuronpedia.org');
-//   await expect(page).toHaveURL(/.*gemma-scope/);
-// })
+test('Fudan University', async({ page }) => {
+  await page.goto('https://neuronpedia.org');
 
-// test('Fudan University', async({ page }) => {
-//   await page.goto('https://neuronpedia.org');
-//   await expect(page).toHaveURL(/.*llama-scope/);
-// })
+  const [newPage] = await Promise.all([
+    page.waitForEvent('popup'),
+    page.locator('a[target="_blank"][href*="llama-scope"]').click()
+  ]);
 
-// test('Apollo Research', async({ page }) => {
-//   await page.goto('https://neuronpedia.org');
-//   await expect(page).toHaveURL(/.*gpt2sm-appollojt/);
-// })
+  await expect(newPage).toHaveURL(/.*llama-scope/);
+});
 
+test('Apollo Research', async({ page }) => {
+  await page.goto('https://neuronpedia.org');
+
+  const [newPage] = await Promise.all([
+    page.waitForEvent('popup'),
+    page.locator('a[target="_blank"][href*="gpt2sm-apollojt"]').click()
+  ]);
+
+  await expect(newPage).toHaveURL(/.*gpt2sm-apollojt/);
+});
+
+// no link
 // test('ML Alignment & Theory Scholars', async({ page }) => {
 //   await page.goto('https://neuronpedia.org');
-//   await expect(page).toHaveURL(/.*neuronpedia\.org\/#mats/);
-// })
+  
+//   const [newPage] = await Promise.all([
+//     page.waitForEvent('popup'),
+//     page.getByRole('link', { name: 'MATS' }).click()
+//   ]);
 
-// test('EleutherAI', async({ page }) => {
-//   await page.goto('https://neuronpedia.org');
-//   await expect(page).toHaveURL(/.*llama3\.1-8b-eleuther_gp/);
-// })
+//   await expect(newPage).toHaveURL('#mats');
+// });
 
+test('EleutherAI', async({ page }) => {
+  await page.goto('https://neuronpedia.org');
+
+  const [newPage] = await Promise.all([
+    page.waitForEvent('popup'),
+    page.locator('a[target="_blank"][href*="llama3\.1-8b-eleuther_gp"]').click()
+  ]);
+
+  await expect(newPage).toHaveURL(/.*llama3\.1-8b-eleuther_gp/);
+});
+
+// 
 // test('Docs: Features', async({ page }) => {
 //   await page.goto('https://neuronpedia.org');
-//   await expect(page).toHaveURL(/.*docs\.neuronpedia\.org\/features/);
-// })
 
-// test('Demo', async({ page }) => {
-//   await page.goto('https://neuronpedia.org');
-//   await expect(page).toHaveURL(/.*johnnylin\/status\/1773403397489881423/);
-// })
+//   const [newPage] = await Promise.all([
+//     page.waitForEvent('popup'),
+//     page.locator('link', { name: 'Docs: Features' }).click()
+//   ]);
 
-// test('Upload SAEs', async({ page }) => {
-//   await page.goto('https://neuronpedia.org');
-//   await expect(page).toHaveURL(/.forms\.gle\/Yg51TYFutJysiyDP7/);
-// })
+//   await expect(newPage).toHaveURL('https://docs.neuronpedia.org/features');
+// });
+
+test('Demo', async({ page }) => {
+  await page.goto('https://neuronpedia.org');
+
+  const [newPage] = await Promise.all([
+    page.waitForEvent('popup'),
+    page.locator('a[target="_blank"][href*="johnnylin\/status\/1773403397489881423"]').click()
+  ]);
+
+  await expect(newPage).toHaveURL(/.*johnnylin\/status\/1773403397489881423/);
+});
+
+// 
 
 // /*test('searcher is embedded in the page', async ({ page }) => {
 //   await page.goto('https://neuronpedia.org');
