@@ -10,6 +10,7 @@ test('model selector', async ({ page }) => {
     await page.locator('[data-state="closed"][data-sentry-source-file="model-selector.tsx"]').click();
 
     const modelNames = [
+        'DEEPSEEK-R1-LLAMA-8B',
         'GEMMA-2-2B', 
         'GEMMA-2-2B-IT',
         'GEMMA-2-9B',
@@ -21,6 +22,16 @@ test('model selector', async ({ page }) => {
     for (const model of modelNames) {
         await expect(page.getByText(model, { exact: true }).first()).toBeVisible();
     }
+});
+
+test('deepseek-r1-llama-8b steer', async({ page}) => {
+    await page.goto('https://neuronpedia.org/deepseek-r1-distill-llama-8b/steer');
+    
+    //user first occurring demo to search
+    await page.getByRole('button', { name: 'Demo' }).first().click();
+
+    //check to see if text changed due to a new response
+    await expect(page.getByText("Hey, I'm steered deepseek-r1-distill-llama-8b")).not.toBeVisible({ timeout: 30000 });
 });
 
 test('gemma-2-2b steer', async({ page}) => {
