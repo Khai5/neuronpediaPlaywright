@@ -207,6 +207,202 @@ test('do more page', async ({ page }) => {
     await page.locator('textarea[name="This demo of Gemma Scope"]').isVisible();
 });
 
+test('advanced steer button', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#learn');
+    
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        await page.locator('a[target="_blank"][href*="https://www.neuronpedia.org/steer"]').click()
+    ]);
+    await expect(newPage).toHaveURL(/https:\/\/www\.neuronpedia\.org\/.*\/steer/);
+});
+
+test('browse saes button', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#learn');
+    
+    await page.getByText('Browse SAEs').click();
+    await expect(page).toHaveURL('https://www.neuronpedia.org/gemma-scope#browse');
+});
+
+// test('Contact Us', async({ page }) => {
+//   await page.goto('https://neuronpedia.org/gemma-scope#learn');
+
+//   const [newPage] = await Promise.all([
+//     page.waitForEvent('popup'),
+//     page.locator('a[target="_blank"][href*="mailto:johnny@neuronpedia\.org"]').click()
+//   ]);
+
+//   await expect(newPage).toHaveURL(/mailto:johnny@neuronpedia\.org*/);
+// });
+
+test('deepmind blog post button', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#learn');
+
+    const [newPage] = await Promise.all ([
+        page.waitForEvent('popup'),
+        await page.getByText('DeepMind Blog Post').click()
+    ]);
+    
+    await expect(newPage).toHaveURL('https://deepmind.google/discover/blog/gemma-scope-helping-the-safety-community-shed-light-on-the-inner-workings-of-language-models/'); 
+});
+
+test('coding tutorial button', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#learn');
+
+    const [newPage] = await Promise.all ([
+        page.waitForEvent('popup'),
+        await page.getByText('Coding Tutorial').click()
+    ]);
+    
+    await expect(newPage).toHaveURL('https://colab.research.google.com/drive/17dQFYUYnuKnP6OwQPH9v_GSYUW5aj-Rp?usp=sharing'); 
+});
+
+//testing it the default method with expect().toHaveURL doesnt work, url ends up being blank
+//only tests for the correct link being on the page
+test('technical report button', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#learn');
+    
+    const href = await page.getByText('Technical Report').getAttribute('href');
+    
+    expect(href).toContain('storage.googleapis.com/gemma-scope/gemma-scope-report.pdf');
+});
+
+test('huggingface button', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#learn');
+
+    const [newPage] = await Promise.all ([
+        page.waitForEvent('popup'),
+        await page.getByText('HuggingFace').click()
+    ]);
+    
+    await expect(newPage).toHaveURL('https://huggingface.co/google/gemma-scope'); 
+});
+
+test('get started with mech interp button', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#learn');
+
+    const [newPage] = await Promise.all ([
+        page.waitForEvent('popup'),
+        await page.getByText('Get Started with Mech Interp').click()
+    ]);
+    
+    await expect(newPage).toHaveURL('https://www.neelnanda.io/mechanistic-interpretability/getting-started'); 
+});
+
+test('favourite mech interp papers button', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#learn');
+
+    const [newPage] = await Promise.all ([
+        page.waitForEvent('popup'),
+        await page.getByText('Favourite Mech Interp Papers').click()
+    ]);
+    
+    await expect(newPage).toHaveURL('https://www.alignmentforum.org/posts/NfFST5Mio7BCAQHPA/an-extremely-opinionated-annotated-list-of-my-favourite-1'); 
+});
+
+test('toward monosemanticity button', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#learn');
+
+    const [newPage] = await Promise.all ([
+        page.waitForEvent('popup'),
+        await page.getByText('Toward Monosemanticity').click()
+    ]);
+    
+    await expect(newPage).toHaveURL('https://transformer-circuits.pub/2023/monosemantic-features'); 
+});
+
+test('saelens button', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#learn');
+
+    const [newPage] = await Promise.all ([
+        page.waitForEvent('popup'),
+        await page.getByText('SAELens').click()
+    ]);
+    
+    await expect(newPage).toHaveURL('https://github.com/jbloomAus/SAELens'); 
+});
+
+test('transformerlens button', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#learn');
+
+    const [newPage] = await Promise.all ([
+        page.waitForEvent('popup'),
+        await page.getByText('TransformerLens').click()
+    ]);
+    
+    await expect(newPage).toHaveURL('https://github.com/TransformerLensOrg/TransformerLens'); 
+});
+
+test('nnsight button', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#learn');
+
+    const [newPage] = await Promise.all ([
+        page.waitForEvent('popup'),
+        await page.getByText('NNsight').click()
+    ]);
+    
+    await expect(newPage).toHaveURL('https://github.com/ndif-team/nnsight'); 
+});
+
+test('mats program button', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#learn');
+
+    const [newPage] = await Promise.all ([
+        page.waitForEvent('popup'),
+        await page.getByText('MATS Program').click()
+    ]);
+    
+    await expect(newPage).toHaveURL('https://www.matsprogram.org/'); 
+});
+
+test('arena education button', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#learn');
+
+    const [newPage] = await Promise.all ([
+        page.waitForEvent('popup'),
+        await page.getByText('ARENA Education').click()
+    ]);
+    
+    await expect(newPage).toHaveURL('https://www.arena.education/'); 
+});
+
+test('twitter button', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#learn');
+
+    const [newPage] = await Promise.all ([
+        page.waitForEvent('popup'),
+        await page.getByText('Twitter').first().click()
+    ]);
+    
+    await expect(newPage).toHaveURL('https://x.com/neuronpedia'); 
+});
+
+// second contact us button on same page
+// test('Contact Us', async({ page }) => {
+//   await page.goto('https://neuronpedia.org/gemma-scope#learn');
+
+//   const [newPage] = await Promise.all([
+//     page.waitForEvent('popup'),
+//     page.locator('a[target="_blank"][href*="mailto:johnny@neuronpedia\.org"]').click()
+//   ]);
+
+//   await expect(newPage).toHaveURL(/mailto:johnny@neuronpedia\.org*/);
+// });
+
+test('open problems button', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#learn');
+
+    await page.getByRole('button', { name: 'Open Problems'}).click();
+    await expect(page).toHaveURL('https://www.neuronpedia.org/gemma-scope#openproblems');
+});
+
+test('playground button', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#learn');
+
+    await page.getByRole('button', { name: 'Playground'}).click();
+    await expect(page).toHaveURL('https://www.neuronpedia.org/gemma-scope#playground');
+});
+
 test('open problems page', async ({ page }) => {
     await page.goto('https://neuronpedia.org/gemma-scope#openproblems');
 
