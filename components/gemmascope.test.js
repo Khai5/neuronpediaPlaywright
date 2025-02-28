@@ -409,6 +409,215 @@ test('open problems page', async ({ page }) => {
     await page.locator('textarea[name="Interpretability has many unsolved problems"]').isVisible();
 });
 
+test('slack link', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#openproblems');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('Slack').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://opensourcemechanistic.slack.com/join/shared_invite/zt-2o756ku1c-_yKBeUQMVfS_p_qcK6QLeA#/shared-invite/email');
+});
+
+test('lesswrong link', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#openproblems');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('LessWrong').click()
+    ]);
+
+    await expect(newPage).toHaveURL('http://www.lesswrong.com');
+});
+
+test('wattenberg link', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#openproblems');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('Wattenberg et al').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://arxiv.org/abs/2407.14662');
+});
+
+test('Ziegler link', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#openproblems');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('Ziegler et al').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://arxiv.org/abs/2205.01663');
+});
+
+test('Steering Vectors link', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#openproblems');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('steering vectors').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://arxiv.org/abs/2308.10248');
+});
+
+test('SAE feature steering link', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#openproblems');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('SAE feature steering').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://www.alignmentforum.org/posts/C5KAZQib3bzzpeyrg/full-post-progress-update-1-from-the-gdm-mech-interp-team#Activation_Steering_with_SAEs');
+});
+
+test('clamping link', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#openproblems');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('clamping').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html');
+});
+
+test('huang et al link', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#openproblems');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('Huang et al').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://arxiv.org/abs/2309.10312');
+});
+
+test('bills et al link', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#openproblems');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('Bills et al').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://openaipublic.blob.core.windows.net/neuron-explainer/paper/index.html');
+});
+
+//same link appears twice
+test('engels et al link', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#openproblems');
+
+    const [firstPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('Engels et al').first().click()
+    ]);
+
+    await expect(firstPage).toHaveURL('https://arxiv.org/abs/2405.14860');
+    await firstPage.close();
+    
+    const [secondNewPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('Engels et al').nth(1).click()
+    ]);
+    await expect(secondNewPage).toHaveURL('https://arxiv.org/abs/2405.14860');
+});
+
+test('toy models link', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#openproblems');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('as shown to happen in toy models').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://www.lesswrong.com/posts/a5wwqza2cY3W7L9cj/sparse-autoencoders-find-composed-features-in-small-toy');
+});
+
+test('stolfo et al link', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#openproblems');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('Stolfo et al').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://arxiv.org/abs/2305.15054');
+});
+
+test('marks et al link', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#openproblems');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('Marks et al').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://arxiv.org/abs/2403.19647');
+});
+
+test('mlp transcoders link', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#openproblems');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('MLP transcoders').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://arxiv.org/abs/2406.11944v1');
+});
+
+test('jain et al link', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#openproblems');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('Jain et al').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://arxiv.org/abs/2407.10264');
+});
+
+test('hendel et al link', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#openproblems');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('Hendel et al').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://arxiv.org/abs/2310.15916');
+});
+
+test('Todd et al link', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#openproblems');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('Todd et al').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://functions.baulab.info/');
+});
+
+test('do more button open problems', async ({ page }) =>{
+    await page.goto('https://neuronpedia.org/gemma-scope#openproblems');
+
+    await page.getByRole('button', { name: 'Do More' }).click();
+    await expect(page).toHaveURL('https://www.neuronpedia.org/gemma-scope#learn');
+});
+
+test('home button open problems', async ({ page }) =>{
+    await page.goto('https://neuronpedia.org/gemma-scope#openproblems');
+
+    await page.getByRole('button', { name: 'Home' }).click();
+    await expect(page).toHaveURL('https://www.neuronpedia.org/gemma-scope#main');
+});
+
 test('playground page', async ({ page }) => {
     await page.goto('https://neuronpedia.org/gemma-scope#playground');
 
