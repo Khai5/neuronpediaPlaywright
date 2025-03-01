@@ -624,6 +624,53 @@ test('playground page', async ({ page }) => {
     await page.locator('textarea[name="Enter something below to see"]').isVisible();
 });
 
+test('im feeling lucky button', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#playground');
+
+    await page.getByRole('button', { name: 'I\'m Feeling Lucky'}).click();
+    await expect(page.getByText('Enter something below to see what features activate, or try I\'m Feeling Lucky.')).not.toBeVisible();
+});
+
+test('model selector', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#playground');
+    await page.locator('[data-state="closed"][data-sentry-source-file="model-selector.tsx"]').click();
+
+    const modelNames = [
+        'GEMMA-2-2B', 
+        'GEMMA-2-2B-IT',
+        'GEMMA-2-9B',
+        'GEMMA-2-9B-IT'
+    ];
+
+    for (const model of modelNames) {
+        await expect(page.getByText(model, { exact: true }).first()).toBeVisible();
+    }
+});
+
+test('source set selector', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#playground');
+    await page.locator('[data-state="closed"][data-sentry-source-file="sourceset-selector.tsx"]').click();
+
+    const modelNames = [
+        'gemmascope-att-16k',
+        'gemmascope-res-16k',
+        'gemmascope-res-65k'
+    ];
+
+    for (const model of modelNames) {
+        await expect(page.getByText(model, { exact: true }).first()).toBeVisible();
+    }
+});
+
+test('playground steering', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#playground');
+
+    const gemmaSearch = page.getByPlaceholder('Make gemma-2-2b think about');
+    await gemmaSearch.fill('testing inputs');
+    await page.getByRole('button', { name: 'Go' }).click();
+    await expect(page.getByRole('button', { name: 'testing' })).toBeVisible();
+});
+
 test('browse & search page', async ({ page }) => {
     await page.goto('https://neuronpedia.org/gemma-scope#browse');
 

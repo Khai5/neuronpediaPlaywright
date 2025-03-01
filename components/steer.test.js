@@ -16,7 +16,7 @@ test('model selector', async ({ page }) => {
         'GEMMA-2-9B',
         'GEMMA-2-9B-IT',
         'GPT2-SM',
-        'LLAMA3.1-8B',
+        'LLAMA3.1-8B'
     ];
 
     for (const model of modelNames) {

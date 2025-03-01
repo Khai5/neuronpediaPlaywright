@@ -236,7 +236,7 @@ test('Upskill', async({ page }) => {
     page.locator('a[target="_blank"][href*="arena\.education"]').click()
   ]);
 
-  await expect(newPage).toHaveURL(/.*arena\.education/);
+  await expect(newPage).toHaveURL('https://www.arena.education/');
 });
 
 // test('all services are online', async ({ page }) => {
