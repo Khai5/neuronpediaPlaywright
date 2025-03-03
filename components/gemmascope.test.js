@@ -676,3 +676,143 @@ test('browse & search page', async ({ page }) => {
 
     await page.locator('textarea[name="Search 50,000,000+ features"]').isVisible();
 });
+
+test('jump to appears', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#browse');
+    
+    // Look for the h3 element with the specific classes and text
+    const jumpToHeading = page.locator('h3.cursor-default.select-none.text-xl.font-semibold.leading-none.tracking-tight[data-sentry-element="CardTitle"][data-sentry-source-file="jump-to-pane.tsx"]');
+    
+    await expect(jumpToHeading).toBeVisible();
+    await expect(jumpToHeading).toHaveText('Jump To');
+});
+
+test('jump to sae/source models', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#browse');
+    
+    //3 occurences of this combobox on this page
+    await page.locator('[data-state="closed"][data-sentry-source-file="model-selector.tsx"]').first().click();
+    const modelNames = [
+        'GEMMA-2-2B', 
+        'GEMMA-2-2B-IT',
+        'GEMMA-2-9B',
+        'GEMMA-2-9B-IT'
+    ];
+
+    for (const model of modelNames) {
+        await expect(page.getByText(model, { exact: true }).first()).toBeVisible();
+    }
+});
+
+test('jump to sae/source source/sae', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#browse');
+    
+    //2 occurences of this combobox on this page
+    await page.locator('[data-state="closed"][data-sentry-source-file="source-selector.tsx"]').first().click();
+    const modelNames = [
+        'gemmascope-att-16k',
+        'gemmascope-att-65k',
+        'gemmascope-mlp-16k',
+        'gemmascope-mlp-65k',
+        'gemmascope-res-16k',
+        'gemmascope-res-1m',
+        'gemmascope-res-262k',
+        'gemmascope-res-32k',
+        'gemmascope-res-524k',
+        'gemmascope-res-65k'
+    ];
+
+    for (const model of modelNames) {
+        await expect(page.getByText(model, { exact: true }).first()).toBeVisible();
+    }
+});
+
+test('jump to feature models', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#browse');
+    
+    //3 occurences of this combobox on this page
+    await page.locator('[data-state="closed"][data-sentry-source-file="model-selector.tsx"]').nth(1).click();
+    const modelNames = [
+        'GEMMA-2-2B', 
+        'GEMMA-2-2B-IT',
+        'GEMMA-2-9B',
+        'GEMMA-2-9B-IT'
+    ];
+
+    for (const model of modelNames) {
+        await expect(page.getByText(model, { exact: true }).first()).toBeVisible();
+    }
+});
+
+test('jump to feature source/sae', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#browse');
+    
+    //2 occurences of this combobox on this page
+    await page.locator('[data-state="closed"][data-sentry-source-file="source-selector.tsx"]').nth(1).click();
+    const modelNames = [
+        'gemmascope-att-16k',
+        'gemmascope-att-65k',
+        'gemmascope-mlp-16k',
+        'gemmascope-mlp-65k',
+        'gemmascope-res-16k',
+        'gemmascope-res-1m',
+        'gemmascope-res-262k',
+        'gemmascope-res-32k',
+        'gemmascope-res-524k',
+        'gemmascope-res-65k'
+    ];
+
+    for (const model of modelNames) {
+        await expect(page.getByText(model, { exact: true }).first()).toBeVisible();
+    }
+});
+
+test('search explanations appears', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#browse');
+    
+    // Look for the h3 element with the specific classes and text
+    const jumpToHeading = page.locator('h3.cursor-default.select-none.text-xl.font-semibold.leading-none.tracking-tight[data-sentry-element="CardTitle"][data-sentry-source-file="search-explanations-pane.tsx"]');
+    
+    await expect(jumpToHeading).toBeVisible();
+    await expect(jumpToHeading).toHaveText('Search Explanations');
+});
+
+test('search via interference appears', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#browse');
+    
+    const jumpToHeading = page.locator('h3.cursor-default.select-none.text-xl.font-semibold.leading-none.tracking-tight[data-sentry-element="CardTitle"][data-sentry-source-file="search-inference-release-pane.tsx"]');
+    
+    await expect(jumpToHeading).toBeVisible();
+    await expect(jumpToHeading).toHaveText('Search via Inference');
+});
+
+test('search via inference models', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#browse');
+    
+    //3 occurences of this combobox on this page
+    await page.locator('[data-state="closed"][data-sentry-source-file="model-selector.tsx"]').nth(2).click();
+    const modelNames = [
+        'GEMMA-2-2B', 
+        'GEMMA-2-2B-IT',
+        'GEMMA-2-9B',
+        'GEMMA-2-9B-IT'
+    ];
+
+    for (const model of modelNames) {
+        await expect(page.getByText(model, { exact: true }).first()).toBeVisible();
+    }
+});
+
+test('search via inference source/sae', async ({ page }) => {
+    await page.goto('https://neuronpedia.org/gemma-scope#browse');
+    
+    await page.locator('[data-state="closed"][data-sentry-source-file="sourceset-selector.tsx"]').first().click();
+    const modelNames = [
+        //'gemmascope-res-131k',
+        'gemmascope-res-16k'
+    ];
+
+    for (const model of modelNames) {
+        await expect(page.getByText(model, { exact: true }).first()).toBeVisible();
+    }
+});
