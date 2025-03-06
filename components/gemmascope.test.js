@@ -428,7 +428,7 @@ test('lesswrong link', async ({ page }) => {
         page.getByText('LessWrong').click()
     ]);
 
-    await expect(newPage).toHaveURL('http://www.lesswrong.com');
+    await expect(newPage).toHaveURL('https://www.lesswrong.com');
 });
 
 test('wattenberg link', async ({ page }) => {
