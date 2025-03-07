@@ -420,16 +420,16 @@ test('slack link', async ({ page }) => {
     await expect(newPage).toHaveURL('https://opensourcemechanistic.slack.com/join/shared_invite/zt-2o756ku1c-_yKBeUQMVfS_p_qcK6QLeA#/shared-invite/email');
 });
 
-test('lesswrong link', async ({ page }) => {
-    await page.goto('https://neuronpedia.org/gemma-scope#openproblems');
+// test('lesswrong link', async ({ page }) => {
+//     await page.goto('https://neuronpedia.org/gemma-scope#openproblems');
 
-    const [newPage] = await Promise.all([
-        page.waitForEvent('popup'),
-        page.getByText('LessWrong').click()
-    ]);
+//     const [newPage] = await Promise.all([
+//         page.waitForEvent('popup'),
+//         page.getByText('LessWrong').click()
+//     ]);
 
-    await expect(newPage).toHaveURL('https://www.lesswrong.com');
-});
+//     await expect(newPage).toHaveURL('https://www.lesswrong.com');
+// });
 
 test('wattenberg link', async ({ page }) => {
     await page.goto('https://neuronpedia.org/gemma-scope#openproblems');

@@ -117,9 +117,75 @@ test('SAE Features page', async ({ page }) => {
     await expect(page).toHaveTitle(/SAE Features | Neuronpedia Docs/);
 });
 
+test('resr_scefr-ajt link', async ({ page }) => {
+    await page.goto('https://docs.neuronpedia.org/features');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('https://neuronpedia.org/gpt2-small/6-res_scefr-ajt/650').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://www.neuronpedia.org/gpt2-small/6-res_scefr-ajt/650');
+});
+
+test('example feature link', async ({ page }) => {
+    await page.goto('https://docs.neuronpedia.org/features');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('https://www.neuronpedia.org/gpt2-small/6-res_scefr-ajt/650').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://www.neuronpedia.org/gpt2-small/6-res_scefr-ajt/650');
+});
+
+test('example json api link', async ({ page }) => {
+    await page.goto('https://docs.neuronpedia.org/features');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('https://www.neuronpedia.org/api/feature/gpt2-small/6-res_scefr-ajt/650').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://www.neuronpedia.org/api/feature/gpt2-small/6-res_scefr-ajt/650');
+});
+
+test('api sandbox link', async ({ page }) => {
+    await page.goto('https://docs.neuronpedia.org/features');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('API sandbox').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://www.neuronpedia.org/api-doc');
+});
+
 test('Steering Using SAE Features page', async ({ page }) => {
     await page.goto('https://docs.neuronpedia.org/steering');
     await expect(page).toHaveTitle(/Steering Using SAE Features | Neuronpedia Docs/);
+});
+
+test('steer link', async ({ page }) => {
+    await page.goto('https://docs.neuronpedia.org/steering');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('https://www.neuronpedia.org/steer').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://www.neuronpedia.org/steer');
+});
+
+test('api docs link', async ({ page }) => {
+    await page.goto('https://docs.neuronpedia.org/steering');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('API Docs').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://www.neuronpedia.org/api-doc');
 });
 
 test('Embed Features (iframe) page', async ({ page }) => {
@@ -132,14 +198,80 @@ test('Search page', async ({ page }) => {
     await expect(page).toHaveTitle(/Search | Neuronpedia Docs/);
 });
 
+test('example search link', async ({ page }) => {
+    await page.goto('https://docs.neuronpedia.org/search');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('example search').nth(1).click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://www.neuronpedia.org/gpt2-small');
+});
+
+test('lesswrong case study link', async ({ page }) => {
+    await page.goto('https://docs.neuronpedia.org/search');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('Exploring OpenAI\'s Latent Directions: Tests, Observations, and Poking Around').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://www.lesswrong.com/posts/QwgYmpnMxBZnmGCsw/exploring-openai-s-latent-directions-tests-observations-and');
+});
+
 test('Lists & Embed Lists page', async ({ page }) => {
     await page.goto('https://docs.neuronpedia.org/lists');
     await expect(page).toHaveTitle(/Lists & Embed Lists | Neuronpedia Docs/);
 });
 
+test('movie sentiment features link', async ({ page }) => {
+    await page.goto('https://docs.neuronpedia.org/lists');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('movie sentiment').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://www.neuronpedia.org/list/clt3c1c200001298tvcoquyt7');
+});
+
+test('quick list link', async ({ page }) => {
+    await page.goto('https://docs.neuronpedia.org/lists');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('is here').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://www.neuronpedia.org/quick-list?name=hello%2C%20this%20is%20a%20quick%20list!%20all%20the%20necessary%20data%20is%20in%20the%20URL&features=%5B%7B%22modelId%22%3A%20%22gpt2-small%22%2C%20%22layer%22%3A%20%226-res-jb%22%2C%20%22index%22%3A%20%222320%22%7D%2C%20%7B%22modelId%22%3A%20%22gpt2-small%22%2C%20%22layer%22%3A%20%223-res-jb%22%2C%20%22index%22%3A%20%221029%22%7D%5D');
+});
+
 test('API and Exports page', async ({ page }) => {
     await page.goto('https://docs.neuronpedia.org/api');
     await expect(page).toHaveTitle(/API and Exports | Neuronpedia Docs/);
+});
+
+test('test api direct link', async ({ page }) => {
+    await page.goto('https://docs.neuronpedia.org/api');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('https://neuronpedia.org/api-doc').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://www.neuronpedia.org/api-doc');
+});
+
+test('data exports link', async ({ page }) => {
+    await page.goto('https://docs.neuronpedia.org/api');
+
+    const [newPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.getByText('https://neuronpedia-exports.s3.amazonaws.com/index.html').click()
+    ]);
+
+    await expect(newPage).toHaveURL('https://neuronpedia-exports.s3.amazonaws.com/index.html');
 });
 
 test('Upload Your SAEs page', async ({ page }) => {
