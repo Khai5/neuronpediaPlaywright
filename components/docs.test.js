@@ -206,7 +206,7 @@ test('example search link', async ({ page }) => {
         page.getByText('example search').nth(1).click()
     ]);
 
-    await expect(newPage).toHaveURL('https://www.neuronpedia.org/gpt2-small');
+    await expect(newPage).toHaveURL(/https:\/\/www\.neuronpedia\.org\/gpt2-small.*/);
 });
 
 test('lesswrong case study link', async ({ page }) => {

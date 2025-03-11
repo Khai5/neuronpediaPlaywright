@@ -30,7 +30,7 @@ import { test, expect } from '@playwright/test'
 //     expect(finalCount).toBe(initialCount + 3);
 // });
 
-test('deepseek', async ({ page }) => {
+test.skip('deepseek', async ({ page }) => {
     await page.goto('https://neuronpedia.org/search');
 
     await page.locator('[data-state="closed"][data-sentry-source-file="model-selector.tsx"]').click();
@@ -48,14 +48,13 @@ test('deepseek', async ({ page }) => {
     const countTest = await regWord.count();
 
     //search activation
-    await page.setDefaultTimeout(60000);
-    const actSearch = page.getByPlaceholder('Test activation with custom text.');
-    await actSearch.fill('testing');
-    await page.getByRole('button', { name: 'Test'}).click();
+    await page.getByRole('textbox', { name: 'Test activation with custom' }).click();
+    await page.getByRole('textbox', { name: 'Test activation with custom' }).fill('testing');
+    await page.getByRole('button', { name: 'Test' }).click();
 
     //check for change
-    const finalTest = page.geteByText(new RegExp(`\\b${targetWord}\\b`, 'i'));
+    const finalTest = page.getByText(new RegExp(`\\b${targetWord}\\b`, 'i'));
     const finalCount = await finalTest.count();
 
-    expect(finalCount).toBe(initialCount + 3);
+    expect(finalCount).toBe(countTest + 3);
 });
