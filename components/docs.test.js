@@ -283,6 +283,3 @@ test('Feedback & Support page', async ({ page }) => {
     await page.goto('https://docs.neuronpedia.org/feedback');
     await expect(page).toHaveTitle(/Feedback & Support | Neuronpedia Docs/);
 });
-
-
-

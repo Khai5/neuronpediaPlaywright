@@ -30,7 +30,8 @@ import { test, expect } from '@playwright/test'
 //     expect(finalCount).toBe(initialCount + 3);
 // });
 
-test.skip('deepseek', async ({ page }) => {
+//unable to interact with activation text box 3/25
+test.fixme('deepseek', async ({ page }) => {
     await page.goto('https://neuronpedia.org/search');
 
     await page.locator('[data-state="closed"][data-sentry-source-file="model-selector.tsx"]').click();
@@ -48,6 +49,7 @@ test.skip('deepseek', async ({ page }) => {
     const countTest = await regWord.count();
 
     //search activation
+    await page.waitForLoadState('networkidle');
     await page.getByRole('textbox', { name: 'Test activation with custom' }).click();
     await page.getByRole('textbox', { name: 'Test activation with custom' }).fill('testing');
     await page.getByRole('button', { name: 'Test' }).click();

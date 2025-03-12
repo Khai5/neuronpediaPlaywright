@@ -29,7 +29,7 @@ test('SAE Evals link', async({ page }) => {
 
   // Wait for navigation and check exact URL
   await page.waitForLoadState('networkidle');
-  await expect(page).toHaveURL(/.*neuronpedia\.org\/sae-bench/);
+  await expect(page).toHaveURL('https://www.neuronpedia.org/sae-bench');
 });
 
 test('Steer', async({ page }) => {
@@ -139,17 +139,16 @@ test('EleutherAI', async({ page }) => {
   await expect(newPage).toHaveURL(/.*llama3\.1-8b-eleuther_gp/);
 });
 
-// Timing out, 2 occurences of the link
-// test('Docs: Features', async({ page }) => {
-//   await page.goto('https://neuronpedia.org');
+test('Docs: Features', async({ page }) => {
+  await page.goto('https://neuronpedia.org');
 
-//   const [newPage] = await Promise.all([
-//     page.waitForEvent('popup'),
-//     page.locator('a[data-sentry-element="Link"][href="https://docs.neuropedia.org/features"]').click()
-//   ]);
+  const [newPage] = await Promise.all([
+    page.waitForEvent('popup'),
+    page.getByRole('link', { name: 'Docs: Features' }).click()
+  ]);
 
-//   await expect(newPage).toHaveURL('https://docs.neuronpedia.org/features');
-// });
+  await expect(newPage).toHaveURL('https://docs.neuronpedia.org/features');
+});
 
 test('Demo', async({ page }) => {
   await page.goto('https://neuronpedia.org');
@@ -181,7 +180,7 @@ test('Docs: Lists', async({ page }) => {
     page.getByRole('link', { name: 'Docs: Lists', exact: true }).click()
   ]);
 
-  await expect(newPage).toHaveURL(/.*docs\.neuronpedia\.org\/lists/);
+  await expect(newPage).toHaveURL('https://docs.neuronpedia.org/lists');
 });
 
 test('Docs: Embed', async({ page }) => {
@@ -192,7 +191,7 @@ test('Docs: Embed', async({ page }) => {
     page.getByRole('link', { name: 'Docs: Embed', exact: true }).click()
   ]);
 
-  await expect(newPage).toHaveURL(/.*docs\.neuronpedia\.org\/embed-iframe/);
+  await expect(newPage).toHaveURL('https://docs.neuronpedia.org/embed-iframe');
 });
 
 test('Slack', async({ page }) => {
@@ -200,7 +199,7 @@ test('Slack', async({ page }) => {
 
   const [newPage] = await Promise.all([
     page.waitForEvent('popup'),
-    page.locator('a[target="_blank"][href*="slack\.com"]').click()
+    page.getByRole('button', { name: 'Slack' }).click()
   ]);
 
   await expect(newPage).toHaveURL(/.*slack\.com*/);
@@ -211,7 +210,7 @@ test('Donate', async({ page }) => {
 
   const [newPage] = await Promise.all([
     page.waitForEvent('popup'),
-    page.locator('a[target="_blank"][href*="every\.org"]').click()
+    page.getByRole('button', { name: 'Donate' }).click()
   ]);
 
   await expect(newPage).toHaveURL(/.*every\.org*/);
@@ -222,7 +221,7 @@ test('Donate', async({ page }) => {
 
 //   const [newPage] = await Promise.all([
 //     page.waitForEvent('popup'),
-//     page.locator('a[target="_blank"][href*="mailto:johnny@neuronpedia\.org"]').click()
+//     page.getByRole('button', { name: 'Feedback' }).click()
 //   ]);
 
 //   await expect(newPage).toHaveURL(/mailto:johnny@neuronpedia\.org*/);
@@ -233,19 +232,19 @@ test('Upskill', async({ page }) => {
 
   const [newPage] = await Promise.all([
     page.waitForEvent('popup'),
-    page.locator('a[target="_blank"][href*="arena\.education"]').click()
+    page.getByRole('button', { name: 'Upskill' }).click()
   ]);
 
   await expect(newPage).toHaveURL('https://www.arena.education/');
 });
 
-// test('all services are online', async ({ page }) => {
-//   await page.goto('https://neuronpedia.org');
+test('all services are online', async ({ page }) => {
+  await page.goto('https://neuronpedia.org');
 
-//   const [newPage] = await Promise.all([
-//     page.waitForEvent('popup'),
-//     page.locator('a[target="_blank"][href*="status\.neuronpedia\.org"]').click()
-//   ]);
+  const [newPage] = await Promise.all([
+    page.waitForEvent('popup'),
+    page.locator('iframe[title="Neuronpedia Status"]').contentFrame().getByRole('link', { name: 'All services are online' }).click()
+  ]);
 
-//   await expect(newPage).toHaveURL(/.*status\.neuronpedia\.org/);
-// });
+  await expect(newPage).toHaveURL('https://status.neuronpedia.org/');
+});

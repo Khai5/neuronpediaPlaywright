@@ -131,6 +131,7 @@ test('llama3.1-8b sae', async ({ page }) => {
     }
 });
 
+//checks for new url in the case that the default model is changed
 test('random button', async ({ page }) => {
     await page.goto('https://neuronpedia.org/search');
 
