@@ -9,14 +9,14 @@ test('launch tweets', async ({ page }) => {
     await page.goto('https://docs.neuronpedia.org');
 
     const link = page.locator('a:has-text("johnny")').first();
-    await expect(link).toHaveAttribute('href', 'https://twitter.com/johnnylin/status/1773403396130885844');
+    await expect(link).toHaveAttribute('href', 'https://x.com/johnnylin/status/1773403396130885844');
 });
 
 test('third embed tweet', async ({ page }) => {
     await page.goto('https://docs.neuronpedia.org');
 
     const link = page.locator('a:has-text("johnnylin")').nth(2);
-    await expect(link).toHaveAttribute('href', 'https://twitter.com/johnnylin/status/1773403397489881423');
+    await expect(link).toHaveAttribute('href', 'https://x.com/johnnylin/status/1773403397489881423');
 });
 
 test('lesswrong link', async ({ page }) => {
