@@ -139,26 +139,85 @@ test('EleutherAI', async({ page }) => {
   await expect(newPage).toHaveURL(/.*llama3\.1-8b-eleuther_gp/);
 });
 
-test('Docs: Features', async({ page }) => {
+test('latents/features', async({ page }) => {
   await page.goto('https://neuronpedia.org');
 
   const [newPage] = await Promise.all([
     page.waitForEvent('popup'),
-    page.getByRole('link', { name: 'Docs: Features' }).click()
+    page.getByRole('link', { name: 'latents/features', exact: true }).click()
   ]);
 
   await expect(newPage).toHaveURL('https://docs.neuronpedia.org/features');
 });
 
-test('Demo', async({ page }) => {
+test('concepts', async({ page }) => {
   await page.goto('https://neuronpedia.org');
 
   const [newPage] = await Promise.all([
     page.waitForEvent('popup'),
-    page.locator('a[target="_blank"][href*="johnnylin\/status\/1773403397489881423"]').click()
+    page.getByRole('link', { name: 'concepts', exact: true }).click()
   ]);
 
-  await expect(newPage).toHaveURL(/.*johnnylin\/status\/1773403397489881423/);
+  await expect(newPage).toHaveURL('https://www.neuronpedia.org/axbench');
+});
+
+test('releases display', async ({ page }) => {
+  await page.goto('https://neuronpedia.org');
+  await expect(page.getByText('Llama Scope R1: SAEs for DeepSeek-R1-Distill-Llama-8B')).toBeVisible();
+});
+
+test('models display', async ({ page }) => {
+  await page.goto('https://neuronpedia.org');
+  await expect(page.getByText('DeepSeek-R1-Llama-8B')).toBeVisible();
+});
+
+test('jump to display', async ({ page }) => {
+  await page.goto('https://neuronpedia.org');
+  await expect(page.getByText('jump to source/sae')).toBeVisible();
+});
+
+test('cat steering', async({ page }) => {
+  await page.goto('https://neuronpedia.org');
+
+  const [newPage] = await Promise.all([
+    page.waitForEvent('popup'),
+    page.getByRole('link', { name: 'Try It: Gemma 2 - Cat Steering', exact: true }).click()
+  ]);
+
+  await expect(newPage).toHaveURL('https://www.neuronpedia.org/gemma-2-9b-it/steer?saved=cm7cp63af00jx1q952neqg6e5');
+});
+
+test('search by explanation', async({ page }) => {
+  await page.goto('https://neuronpedia.org');
+
+  const [newPage] = await Promise.all([
+    page.waitForEvent('popup'),
+    page.getByRole('link', { name: 'Try It: Search by Explanation', exact: true }).click()
+  ]);
+
+  await expect(newPage).toHaveURL('https://www.neuronpedia.org/search-explanations');
+});
+
+test('search via interference', async({ page }) => {
+  await page.goto('https://neuronpedia.org');
+
+  const [newPage] = await Promise.all([
+    page.waitForEvent('popup'),
+    page.getByRole('link', { name: 'Docs: Search via Inference', exact: true }).click()
+  ]);
+
+  await expect(newPage).toHaveURL('https://docs.neuronpedia.org/search');
+});
+
+test('api + libraries', async({ page }) => {
+  await page.goto('https://neuronpedia.org');
+
+  const [newPage] = await Promise.all([
+    page.waitForEvent('popup'),
+    page.getByRole('link', { name: 'API Playground', exact: true }).click()
+  ]);
+
+  await expect(newPage).toHaveURL('https://www.neuronpedia.org/api-doc');
 });
 
 test('searcher is embedded in the page', async ({ page }) => {
