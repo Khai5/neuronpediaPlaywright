@@ -1,5 +1,12 @@
 import { expect, test } from '@playwright/test';
 
+const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
+const mainUrl = `${baseUrl}`;
+const appUrl = `https://www.neuronpedia.org`;
+
+const getPath = (url) => {
+  return url.replace('https://')
+}
 test('steer page loads', async ({ page }) => {
   await page.goto('https://neuronpedia.org/steer');
   await expect(page.locator('text="Steer Models"')).toBeVisible();
@@ -15,7 +22,7 @@ test('model selector', async ({ page }) => {
     'GEMMA-2-2B-IT',
     'GEMMA-2-9B',
     'GEMMA-2-9B-IT',
-    'GPT2-SM',
+    'GPT2-SMALL',
     'LLAMA3.1-8B',
   ];
 

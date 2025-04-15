@@ -10,7 +10,7 @@ test('search models', async ({ page }) => {
     'GEMMA-2-2B-IT',
     'GEMMA-2-9B',
     'GEMMA-2-9B-IT',
-    'GPT2-SM',
+    'GPT2-SMALL',
     'LLAMA3.1-8B',
   ];
 
@@ -25,7 +25,7 @@ test('deepseek sae', async ({ page }) => {
   await page.locator('[data-state="closed"][data-sentry-source-file="model-selector.tsx"]').click();
   await page.getByText('DEEPSEEK-R1-LLAMA-8B').click();
 
-  await expect(page.getByText('llamascope-openr1-res-32k')).toBeVisible();
+  await expect(page.getByText('llamascope-slimpj-res-32k')).toBeVisible();
 });
 
 test('gemma-2-2b sae', async ({ page }) => {

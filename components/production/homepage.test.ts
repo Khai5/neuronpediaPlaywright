@@ -31,6 +31,8 @@ test('SAE Evals link', async ({ page }) => {
   await expect(page).toHaveURL('https://www.neuronpedia.org/sae-bench');
 });
 
+const baseUrl = 'https://neuronpedia.org';
+
 test('Steer', async ({ page }) => {
   await page.goto('https://neuronpedia.org');
 
@@ -39,7 +41,7 @@ test('Steer', async ({ page }) => {
   await steerLink.waitFor({ state: 'visible' });
   await steerLink.click();
 
-  await expect(page).toHaveURL(/https:\/\/www\.neuronpedia\.org\/.*\/steer/);
+  await expect(page).toHaveURL(/\/steer$/);
 });
 
 // Must be logged in to test this
