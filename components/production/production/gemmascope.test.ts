@@ -739,3 +739,12 @@ test('search via inference source/sae', async ({ page }) => {
     await expect(page.getByText(model, { exact: true }).first()).toBeVisible();
   }
 });
+
+test('gemma steer demo', async ({ page }) => {
+  await page.goto('https://neuronpedia.org/gemma-scope#steer');
+  
+  await page.click('text=🤯');
+  await page.getByRole('button', { name: 'Tell me about yourself.' }).first().click();
+  await page.waitForTimeout(3000);
+  await expect(page.getByText("Sorry, your message could not be sent at this time. Please try again later.")).not.toBeVisible({ timeout: 30000 });
+});
