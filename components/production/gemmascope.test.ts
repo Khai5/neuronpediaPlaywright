@@ -64,7 +64,8 @@ test('demo button food', async ({ page }) => {
 test('demo button News', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#microscope');
 
-  await page.getByText('News').click();
+  // invisible occurence of another 'news'
+  await page.getByText('News').nth(1).click();
   await expect(page.getByText('Click a preset above to send a text to Gemma')).not.toBeVisible({ timeout: 30000 });
 });
 

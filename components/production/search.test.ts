@@ -138,7 +138,8 @@ test('food button', async ({ page }) => {
 test('news button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/search');
 
-  await page.getByText('News').click();
+  // invisible occurence of another 'news'
+  await page.getByText('News').nth(1).click();
   await expect(page).not.toHaveURL('https://www.neuronpedia.org/search');
 });
 
