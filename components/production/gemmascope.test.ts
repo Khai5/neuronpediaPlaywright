@@ -746,6 +746,6 @@ test('gemma steer demo', async ({ page }) => {
   
   await page.click('text=🤯');
   await page.getByRole('button', { name: 'Tell me about yourself.' }).first().click();
-  await page.waitForTimeout(3000);
+  await page.waitForTimeout(5000);
   await expect(page.getByText("Sorry, your message could not be sent at this time. Please try again later.")).not.toBeVisible({ timeout: 30000 });
 });
