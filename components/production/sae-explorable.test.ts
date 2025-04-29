@@ -8,9 +8,18 @@ test ('page loads', async ({ page }) => {
 
 test('max strength', async ({ page }) => {
     await page.goto('https://neuronpedia.org/embed/sae-explorable');
-    
+    await page.waitForLoadState('networkidle');
+
+    const initialCount = await page.evaluate(() => {
+        return document.querySelectorAll('div.flex.w-full.justify-end').length;
+    });
+
     await page.click('text=🤯');
     await page.getByRole('button', { name: 'Tell me about yourself.' }).first().click();
-    await page.waitForTimeout(5000);
-    await expect(page.getByText("Sorry, your message could not be sent at this time. Please try again later.")).not.toBeVisible({ timeout: 30000 });
+    
+    const finalCount = await page.evaluate(() => {
+        return document.querySelectorAll('div.flex.w-full.justify-end').length;
+    });
+
+    expect(finalCount).toBe(initialCount + 2);
   });
