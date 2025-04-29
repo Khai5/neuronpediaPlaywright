@@ -138,8 +138,7 @@ test('food button', async ({ page }) => {
 test('news button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/search');
 
-  // invisible occurence of another 'news'
-  await page.getByText('News').nth(1).click();
+  await page.getByRole('button', { name: 'News' }).click()
   await expect(page).not.toHaveURL('https://www.neuronpedia.org/search');
 });
 
