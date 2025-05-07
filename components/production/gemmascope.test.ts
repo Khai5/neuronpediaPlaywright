@@ -119,28 +119,28 @@ test('analyze features page', async ({ page }) => {
 test('olympic sports button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#analyze');
   
-  await page.getByRole('button', { name: "Olympic Sports" }).click();
+  await page.locator('button[value="sports"]').click();
   await expect(page.getByText('What do these activations (in green) have in common?')).toBeVisible();
 });
 
 test('famous cities button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#analyze');
   
-  await page.getByRole('button', { name: "famous cities" }).click();
+  await page.locator('button[value="cities"]').click();
   await expect(page.getByText('What do these activations (in green) have in common?')).toBeVisible();
 });
 
 test('reference to animals button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#analyze');
   
-  await page.getByRole('button', { name: "reference to animals" }).click();
+  await page.locator('button[value="animals"]').click();
   await expect(page.getByText('Nice! This was tricky, because there are two possibly correct answers.')).toBeVisible();
 });
 
 test('none of these button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#analyze');
   
-  await page.getByRole('button', { name: "none of these" }).click();
+  await page.locator('button[value="none"]').click();
   await expect(page.getByText('Nice! This was tricky, because there are two possibly correct answers.')).toBeVisible();
 });
 
