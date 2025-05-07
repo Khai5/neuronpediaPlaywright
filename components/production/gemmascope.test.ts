@@ -9,35 +9,35 @@ test('main page', async ({ page }) => {
 test('microscope button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#main');
 
-  await page.getByText("scan Gemma 2's brain to see what it's thinking").click();
+  await page.getByRole('button', { name: "Scan Gemma 2's brain to see what it's thinking" }).click();
   await expect(page).toHaveURL('https://www.neuronpedia.org/gemma-scope#microscope');
 });
 
 test('analyze features button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#main');
 
-  await page.getByText('Make features fire and figure out what they do').click();
+  await page.getByRole('button', { name: "Make features fire and figure out what they do" }).click();
   await expect(page).toHaveURL('https://www.neuronpedia.org/gemma-scope#analyze');
 });
 
 test('steer gemma button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#main');
 
-  await page.getByText("Change Gemma's behavior by manipulating features").click();
+  await page.getByRole('button', { name: "Change Gemma's behavior by manipulating features" }).click();
   await expect(page).toHaveURL('https://www.neuronpedia.org/gemma-scope#steer');
 });
 
 test('do more button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#main');
 
-  await page.getByText('Dive deeper into the exciting world of AI interpretability').click();
+  await page.getByRole('button', { name: "Dive deeper into the exciting world of AI interpretability" }).click();
   await expect(page).toHaveURL('https://www.neuronpedia.org/gemma-scope#learn');
 });
 
 test('browse & search saes button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#main');
 
-  await page.getByText('Directly explore the SAEs in Gemma Scope').click();
+  await page.getByRole('button', { name: "Directly explore the SAEs in Gemma Scope" }).click();
   await expect(page).toHaveURL('https://www.neuronpedia.org/gemma-scope#browse');
 });
 
@@ -50,14 +50,14 @@ test('microscope page', async ({ page }) => {
 test('demo button feeling lucky', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#microscope');
 
-  await page.getByText("I'm Feeling Lucky").click();
+  await page.getByRole('button', { name: "I'm Feeling Lucky" }).click();
   await expect(page.getByText('Click a preset above to send a text to Gemma')).not.toBeVisible({ timeout: 30000 });
 });
 
 test('demo button food', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#microscope');
 
-  await page.getByText('Food').click();
+  await page.getByRole('button', { name: "Food" }).click();
   await expect(page.getByText('Click a preset above to send a text to Gemma')).not.toBeVisible({ timeout: 30000 });
 });
 
@@ -71,21 +71,21 @@ test('demo button News', async ({ page }) => {
 test('demo button Literary', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#microscope');
 
-  await page.getByText('Literary').click();
+  await page.getByRole('button', { name: "Literary" }).click();
   await expect(page.getByText('Click a preset above to send a text to Gemma')).not.toBeVisible({ timeout: 30000 });
 });
 
 test('demo button Personal', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#microscope');
 
-  await page.getByText('Personal').click();
+  await page.getByRole('button', { name: "Personal" }).click();
   await expect(page.getByText('Click a preset above to send a text to Gemma')).not.toBeVisible({ timeout: 30000 });
 });
 
 test('demo button Programming', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#microscope');
 
-  await page.getByText('Programming').click();
+  await page.getByRole('button', { name: "Programming" }).click();
   await expect(page.getByText('Click a preset above to send a text to Gemma')).not.toBeVisible({ timeout: 30000 });
 });
 
@@ -118,25 +118,29 @@ test('analyze features page', async ({ page }) => {
 
 test('olympic sports button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#analyze');
-  await page.getByText('Olympic sports').click();
+  
+  await page.getByRole('button', { name: "Olympic Sports" }).click();
   await expect(page.getByText('What do these activations (in green) have in common?')).toBeVisible();
 });
 
 test('famous cities button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#analyze');
-  await page.getByText('famous cities').click();
+  
+  await page.getByRole('button', { name: "famous cities" }).click();
   await expect(page.getByText('What do these activations (in green) have in common?')).toBeVisible();
 });
 
 test('reference to animals button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#analyze');
-  await page.getByText('references to animals').click();
+  
+  await page.getByRole('button', { name: "reference to animals" }).click();
   await expect(page.getByText('Nice! This was tricky, because there are two possibly correct answers.')).toBeVisible();
 });
 
 test('none of these button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#analyze');
-  await page.getByText('none of these').click();
+  
+  await page.getByRole('button', { name: "none of these" }).click();
   await expect(page.getByText('Nice! This was tricky, because there are two possibly correct answers.')).toBeVisible();
 });
 
@@ -144,7 +148,7 @@ test('analyze steer', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#analyze');
 
   // unlocked after doing the demo, or pressing skip demo
-  await page.getByText('skip example').first().click();
+  await page.getByRole('button', { name: "skip example" }).click();
   const analyzeSteer = page.getByPlaceholder('Can you write a text snippet that activates it?');
   await analyzeSteer.fill('test');
   await analyzeSteer.press('Enter');
@@ -175,8 +179,8 @@ test('next steer gemma button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#analyze');
 
   // unlocked after puzzles, or pressing skip analyze
-  await page.getByText('skip analyze').nth(1).click();
-  await page.getByText(' Next - Steer Gemma').click();
+  await page.getByRole('button', { name: "skip analyze" }).nth(1).click();
+  await page.getByRole('button', { name: " Next - Steer Gemma" }).click();
   await expect(page).toHaveURL('https://www.neuronpedia.org/gemma-scope#steer');
 });
 
@@ -196,7 +200,7 @@ test('steer demo', async ({ page }) => {
 test('next do more button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#steer');
 
-  await page.getByText('Next - Do More').click();
+  await page.getByRole('button', { name: "Next - Do More" }).click();
   await expect(page).toHaveURL('https://www.neuronpedia.org/gemma-scope#learn');
 });
 
@@ -219,7 +223,7 @@ test('advanced steer button', async ({ page }) => {
 test('browse saes button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#learn');
 
-  await page.getByText('Browse SAEs').click();
+  await page.getByRole('button', { name: "Browse SAEs" }).click();
   await expect(page).toHaveURL('https://www.neuronpedia.org/gemma-scope#browse');
 });
 
