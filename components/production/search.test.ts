@@ -24,7 +24,7 @@ test('deepseek sae', async ({ page }) => {
 
   await page.locator('[data-state="closed"][data-sentry-source-file="model-selector.tsx"]').click();
   await page.getByText('DEEPSEEK-R1-LLAMA-8B').click();
-
+  await page.locator('[data-state="closed"][data-sentry-source-file="sourceset-selector.tsx"]').click();
   await expect(page.getByText('llamascope-slimpj-res-32k')).toBeVisible();
 });
 
@@ -124,14 +124,14 @@ test('llama3.1-8b sae', async ({ page }) => {
 test('random button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/search');
 
-  await page.getByText('Random').click();
+  await page.getByRole('button', { name: 'Random' }).first().click();
   await expect(page).not.toHaveURL('https://www.neuronpedia.org/search');
 });
 
 test('food button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/search');
 
-  await page.getByText('Food').click();
+  await page.getByRole('button', { name: 'Food' }).first().click();
   await expect(page).not.toHaveURL('https://www.neuronpedia.org/search');
 });
 
@@ -145,62 +145,62 @@ test('news button', async ({ page }) => {
 test('literary button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/search');
 
-  await page.getByText('Literary').click();
+  await page.getByRole('button', { name: 'Literary' }).first().click();
   await expect(page).not.toHaveURL('https://www.neuronpedia.org/search');
 });
 
 test('personal button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/search');
 
-  await page.getByText('Personal').click();
+  await page.getByRole('button', { name: 'Personal' }).first().click();
   await expect(page).not.toHaveURL('https://www.neuronpedia.org/search');
 });
 
 test('Programming button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/search');
 
-  await page.getByText('Programming').click();
+  await page.getByRole('button', { name: 'Programming' }).first().click();
   await expect(page).not.toHaveURL('https://www.neuronpedia.org/search');
 });
 
 test('Techinical button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/search');
 
-  await page.getByText('Technical').click();
+  await page.getByRole('button', { name: 'Technical' }).first().click();
   await expect(page).not.toHaveURL('https://www.neuronpedia.org/search');
 });
 
 test('academic button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/search');
 
-  await page.getByText('Academic').click();
+  await page.getByRole('button', { name: 'Academic' }).first().click();
   await expect(page).not.toHaveURL('https://www.neuronpedia.org/search');
 });
 
 test('business button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/search');
 
-  await page.getByText('Business').click();
+  await page.getByRole('button', { name: 'Business' }).first().click();
   await expect(page).not.toHaveURL('https://www.neuronpedia.org/search');
 });
 
 test('legal button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/search');
 
-  await page.getByText('Legal').click();
+  await page.getByRole('button', { name: 'Legal' }).first().click();
   await expect(page).not.toHaveURL('https://www.neuronpedia.org/search');
 });
 
 test('educational button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/search');
 
-  await page.getByText('Educational').click();
+  await page.getByRole('button', { name: 'Educational' }).first().click();
   await expect(page).not.toHaveURL('https://www.neuronpedia.org/search');
 });
 
 test('Cultural button', async ({ page }) => {
   await page.goto('https://neuronpedia.org/search');
 
-  await page.getByText('Cultural').click();
+  await page.getByRole('button', { name: 'Cultural' }).first().click();
   await expect(page).not.toHaveURL('https://www.neuronpedia.org/search');
 });
