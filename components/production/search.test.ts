@@ -24,7 +24,6 @@ test('deepseek sae', async ({ page }) => {
 
   await page.locator('[data-state="closed"][data-sentry-source-file="model-selector.tsx"]').click();
   await page.getByText('DEEPSEEK-R1-LLAMA-8B').click();
-  await page.locator('[data-state="closed"][data-sentry-source-file="sourceset-selector.tsx"]').click();
   await expect(page.getByText('llamascope-slimpj-res-32k')).toBeVisible();
 });
 
