@@ -591,7 +591,7 @@ test('source set selector', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#playground');
   await page.locator('[data-state="closed"][data-sentry-source-file="sourceset-selector.tsx"]').click();
 
-  const modelNames = ['gemmascope-att-16k', 'gemmascope-res-16k', 'gemmascope-res-65k'];
+  const modelNames = ['gemmascope-att-16k', 'gemmascope-res-16k', 'res-matryoshka-dc'];
 
   for (const model of modelNames) {
     await expect(page.getByText(model, { exact: true }).first()).toBeVisible();

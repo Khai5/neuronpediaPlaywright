@@ -35,7 +35,7 @@ test('gemma-2-2b sae', async ({ page }) => {
   // await page.getByText('GEMMA-2-2B').click();
 
   await page.locator('[data-state="closed"][data-sentry-source-file="sourceset-selector.tsx"]').click();
-  const saeNames = ['gemmascope-att-16k', 'gemmascope-res-16k', 'gemmascope-res-65k'];
+  const saeNames = ['gemmascope-att-16k', 'gemmascope-res-16k', 'res-matryoshka-dc'];
 
   for (const saeset of saeNames) {
     await expect(page.getByText(saeset, { exact: true }).first()).toBeVisible();
