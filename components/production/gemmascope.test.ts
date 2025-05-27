@@ -244,7 +244,7 @@ test('deepmind blog post button', async ({ page }) => {
   const [newPage] = await Promise.all([page.waitForEvent('popup'), await page.getByText('DeepMind Blog Post').click()]);
 
   await expect(newPage).toHaveURL(
-    'https://deepmind.google/discover/blog/gemma-scope-helping-the-safety-community-shed-light-on-the-inner-workings-of-language-models/',
+    'https://deepmind.google/discover/blog/gemma-scope-helping-the-safety-community-shed-light-on-the-inner-workings-of-language-models',
   );
 });
 
