@@ -62,12 +62,12 @@ test('Steer', async ({ page }) => {
 //   await expect(page).toHaveURL(/.*neuronpedia\.org\/user\/.*\/vectors/);
 // }) */
 
-test('Getting Started', async ({ page }) => {
+test('Get Started', async ({ page }) => {
   await page.goto('https://neuronpedia.org');
 
   const [newPage] = await Promise.all([
     page.waitForEvent('popup'),
-    page.getByRole('link', { name: 'Getting Started', exact: true }).click(),
+    page.getByRole('link', { name: 'Get Started', exact: true }).click(),
   ]);
 
   await expect(newPage).toHaveURL('https://docs.neuronpedia.org/');
