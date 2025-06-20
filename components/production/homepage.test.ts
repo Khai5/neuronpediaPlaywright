@@ -258,7 +258,7 @@ test('Slack', async ({ page }) => {
 
   const [newPage] = await Promise.all([
     page.waitForEvent('popup'),
-    page.getByRole('button', { name: 'Slack' }).click(),
+    page.getByRole('link', { name: 'Slack' }).first().click(),
   ]);
 
   await expect(newPage).toHaveURL(/.*slack\.com*/);
