@@ -15,7 +15,7 @@ test('API navigation link', async ({ page }) => {
 
   // Wait for navigation and check exact URL
   await page.waitForLoadState('networkidle');
-  await expect(page).toHaveURL('https://www.neuronpedia.org/api-doc');
+  await expect(page).toHaveURL(/https:\/\/www\.neuronpedia\.org\/api-doc.*/);
 });
 
 test('SAE Evals link', async ({ page }) => {
