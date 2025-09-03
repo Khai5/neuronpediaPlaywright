@@ -282,7 +282,7 @@ test('get started with mech interp button', async ({ page }) => {
     await page.getByText('Get Started with Mech Interp').click(),
   ]);
 
-  await expect(newPage).toHaveURL('https://www.neelnanda.io/mechanistic-interpretability/getting-started');
+  await expect(newPage).toHaveURL('https://www.alignmentforum.org/posts/jP9KDyMkchuv6tHwm/how-to-become-a-mechanistic-interpretability-researcher');
 });
 
 test('favourite mech interp papers button', async ({ page }) => {
