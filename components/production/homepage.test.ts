@@ -289,13 +289,25 @@ test('Upskill', async ({ page }) => {
 test('all services are online', async ({ page }) => {
   await page.goto('https://neuronpedia.org');
 
+  const iframe = page.locator('iframe[title="Neuronpedia Status"]').contentFrame();
+  
+  const allOnline = iframe.getByRole('link', { name: 'All services are online' });
+  const someDown = iframe.getByRole('link', { name: 'Some services are down' });
+  
+  let linkToClick;
+  
+  if (await allOnline.isVisible()) {
+    linkToClick = allOnline;
+  } else if (await someDown.isVisible()) {
+    console.log("Some services are currently down");
+    linkToClick = someDown;
+  } else {
+    throw new Error("Could not find service status");
+  }
+  
   const [newPage] = await Promise.all([
     page.waitForEvent('popup'),
-    page
-      .locator('iframe[title="Neuronpedia Status"]')
-      .contentFrame()
-      .getByRole('link', { name: 'All services are online' })
-      .click(),
+    linkToClick.click(),
   ]);
 
   await expect(newPage).toHaveURL('https://status.neuronpedia.org/');

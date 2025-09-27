@@ -23,7 +23,8 @@ test('model selector', async ({ page }) => {
     'GEMMA-2-9B',
     'GEMMA-2-9B-IT',
     'GPT2-SMALL',
-    'LLAMA3.1-8B',
+    'LLAMA3.1-8B', //base
+    'LLAMA3.1-8B', //instruct
   ];
 
   for (const model of modelNames) {
@@ -94,6 +95,16 @@ test('gpt2-small steer', async ({ page }) => {
 
 test('llama3.1-8b steer', async ({ page }) => {
   await page.goto('https://neuronpedia.org/llama3.1-8b/steer');
+
+  // user first occurring demo to search
+  await page.getByRole('button', { name: 'Demo' }).first().click();
+
+  // check to see if text changed due to a new response
+  await expect(page.getByText("Hey, I'm steered llama3.1-8b!")).not.toBeVisible({ timeout: 30000 });
+});
+
+test('llama3.1-8b-it steer', async ({ page }) => {
+  await page.goto('https://neuronpedia.org/llama3.1-8b-it/steer');
 
   // user first occurring demo to search
   await page.getByRole('button', { name: 'Demo' }).first().click();
