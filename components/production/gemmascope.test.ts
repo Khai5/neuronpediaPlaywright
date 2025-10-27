@@ -314,7 +314,7 @@ test('saelens button', async ({ page }) => {
 
   const [newPage] = await Promise.all([page.waitForEvent('popup'), await page.getByText('SAELens').click()]);
 
-  await expect(newPage).toHaveURL('https://github.com/jbloomAus/SAELens');
+  await expect(newPage).toHaveURL('https://github.com/decoderesearch/SAELens');
 });
 
 test('transformerlens button', async ({ page }) => {
