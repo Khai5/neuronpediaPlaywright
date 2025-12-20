@@ -89,7 +89,7 @@ test('Google Deepmind', async ({ page }) => {
 
   const [newPage] = await Promise.all([
     page.waitForEvent('popup'),
-    page.locator('a[target="_blank"][href*="gemma-scope"]').click(),
+    page.getByRole('link', { name: 'Google DeepMind', exact: true }).click(),
   ]);
 
   await expect(newPage).toHaveURL(/.*gemma-scope/);
