@@ -18,13 +18,15 @@ test('model selector', async ({ page }) => {
 
   const modelNames = [
     'DEEPSEEK-R1-LLAMA-8B',
+    'GEMMA-2-27B',
     'GEMMA-2-2B',
     'GEMMA-2-2B-IT',
-    'GEMMA-2-9B',
     'GEMMA-2-9B-IT',
+    'GPT-OSS-20B',
     'GPT2-SMALL',
     'LLAMA3.1-8B', //base
-    'LLAMA3.1-8B', //instruct
+    'LLAMA3.1-8B-IT', //instruct
+    'LLAMA3.3-70B-IT', //instruct
   ];
 
   for (const model of modelNames) {

@@ -578,7 +578,7 @@ test('model selector', async ({ page }) => {
   await page.goto('https://neuronpedia.org/gemma-scope#playground');
   await page.locator('[data-state="closed"][data-sentry-source-file="model-selector.tsx"]').click();
 
-  const modelNames = ['GEMMA-2-2B', 'GEMMA-2-2B-IT', 'GEMMA-2-9B', 'GEMMA-2-9B-IT'];
+  const modelNames = [ 'GEMMA-2-27B','GEMMA-2-2B', 'GEMMA-2-2B-IT', 'GEMMA-2-9B-IT'];
 
   for (const model of modelNames) {
     await expect(page.getByText(model, { exact: true }).first()).toBeVisible();
@@ -721,7 +721,7 @@ test('search via inference models', async ({ page }) => {
 
   // 3 occurences of this combobox on this page
   await page.locator('[data-state="closed"][data-sentry-source-file="model-selector.tsx"]').nth(2).click();
-  const modelNames = ['GEMMA-2-2B', 'GEMMA-2-2B-IT', 'GEMMA-2-9B', 'GEMMA-2-9B-IT'];
+  const modelNames = ['GEMMA-2-27B', 'GEMMA-2-2B', 'GEMMA-2-2B-IT', 'GEMMA-2-9B-IT'];
 
   for (const model of modelNames) {
     await expect(page.getByText(model, { exact: true }).first()).toBeVisible();
