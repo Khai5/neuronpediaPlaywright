@@ -54,7 +54,7 @@ test('DeepMind Blog', async ({ page }) => {
     
     const [newPage] = await Promise.all([
         page.waitForEvent('popup'),
-        await page.getByRole('link', { name: 'DeepMind Blog Read the official blog post about Gemma Scope 2.' }).click()
+        await page.getByRole('link', { name: 'DeepMind Blog Read the official blog post announcement for Gemma Scope 2.' }).click()
   ]);
 
     await expect(newPage).toHaveURL('https://deepmind.google/blog/gemma-scope-2-helping-the-ai-safety-community-deepen-understanding-of-complex-language-model-behavior/')
