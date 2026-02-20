@@ -10,7 +10,9 @@ test('search models', async ({ page }) => {
     'GEMMA-2-2B',
     'GEMMA-2-2B-IT',
     'GEMMA-2-9B-IT',
-    'GEMMA-3-4B-IT',
+    'GEMMA-3-1B',
+    'GEMMA-3-270M',
+    'GEMMA-3-4B',
     'GPT-OSS-20B',
     'GPT2-SMALL',
     'LLAMA3.1-8B', //base
